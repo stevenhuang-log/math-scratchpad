@@ -35,24 +35,32 @@ $$\log_2(1.b) \approx 0.b$$
 
 ---
 
-## 2. Ways you can Play Around with the Idea
-
-we can now approximate other values. Suppose we have
-
-$$\log_2(k, b)$$
-
-we can approximate this into $\log_2(k * 1. k * b)$, which equals $\log_2(k * (1 + 0.b))$. This also equals to 
-$\log_2(k) + \log_2(1.b) \approx \log_2(k) + 0.b$. In conclusion:
-
-$$\log_2(k. b) \approx \log_2(k) + 0.b$$
-
-- **First: we can transfer the value to other bases by using the change of base formula $\log_2(a.b) = \frac{\log(a.b)} {\log(2)}$.**<br>
-- **Second: Since we approximate $\log_2(k * 1. b)$ to $\log_2(k * 1. k * b)$, the error between the true value and the approximation might increase.**<br>
-- **Third: Notice that we still cannot approximate $\log_2(a.b)$ without a calculator. How about Approximating $\log_2(a)$.**
-  
+## 2. An Attempt That Didn't Work
+ 
+I wanted to approximate other values. Suppose we have
+ 
+$$\log_2(k.b)$$
+ 
+Let $d = k \cdot b$. Then I approximate this as $\log_2(k.d)$, which equals $\log_2\big(k \cdot (1 + 0.b)\big)$ — this rewriting is only valid when $d < 10$, so that no carrying happens.
+ 
+That gives
+ 
+$$\log_2(k) + \log_2(1.b) \approx \log_2(k) + 0.b$$
+ 
+In conclusion:
+ 
+$$\log_2(k.b) \approx \log_2(k) + 0.b$$
+ 
+- **First: we can transfer the value to other bases by using the change of base formula $\log_2(a.b) = \frac{\log(a.b)}{\log(2)}$.**
+- **Second: Since I approximate $\log_2(k.b)$ as $\log_2(k.d)$ with $d = k \cdot b$, these are two different numbers, so the error between the true value and the approximation might increase.**
+- **Third: Notice that we still cannot approximate $\log_2(a.b)$ without a calculator. How about approximating $\log_2(a)$?**
+**Unresolved:** I need to measure the gap $k.d - k.b$ in terms of $k$ and $b$, and check what it equals when $k = 1$. Until I do that, I am not claiming this section works.
+ 
 ---
-
-## 3. I will try to approximate $\log_2(a)$ next time by analyzing data.
+ 
+## 3. Next Steps
+ 
+I will try to approximate $\log_2(a)$ next time by analyzing data.
 
 
 
