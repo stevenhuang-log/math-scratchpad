@@ -29,38 +29,53 @@ $$\log_2(1.b) \approx 0.b$$
 | 1.9 | 0.92600 | 0.9 | 0.02600 |
 | 2.0 | 1.00000 | 1.0 | 0.00000 |
 
-- **First: Since the error is always positive, my approximation is always lower than the actual value**<br>
+- **First: Since the error is always positive, my approximation is always lower than the actual value.**
 - **Second: The error rises and falls. It then peaks at $x = 1.4$.**
 
 
 ---
 
-## 2. An Attempt That Didn't Work
+## 2. A Way to Play Around with the Idea
  
 I wanted to approximate other values. Suppose we have
  
 $$\log_2(k.b)$$
  
-Let $d = k \cdot b$. Then I approximate this as $\log_2(k.d)$, which equals $\log_2\big(k \cdot (1 + 0.b)\big)$ — this rewriting is only valid when $d < 10$, so that no carrying happens.
+We can factor $k$ out, so it now looks like 
+
+$$\log_2(k.b) = \log_2(k \cdot (1 + \frac{0.b}{k})) = \log_2(k) + \log_2(1 + \frac{0.b}{k})$$
+
+ Since we know that $\frac{0.b}{k}$ equals a decimal. My rule from part one applies to the second term:
  
-That gives
- 
-$$\log_2(k) + \log_2(1.b) \approx \log_2(k) + 0.b$$
+ $$\log_2(1 + \frac{0.b}{k}) \approx \frac{0.b}{k}$$
  
 In conclusion:
  
-$$\log_2(k.b) \approx \log_2(k) + 0.b$$
+$$\log_2(k.b) \approx \log_2(k) + \frac{0.b}{k}$$
+
+### Checking
+
+|$x$|my rule|actual|error|
+|:---:|:---:|:---:|:---:|
+|2.5|$1 + \frac{0.5}{2} == 1.25000$|1.32193|0.07193|
+|3.2|$1.58496 + \frac{0.2}{3} = 1.65163$|1.87807|0.02644|
+|7.5|$2.80735 + \frac{0.5}{7} = 2.87878$|2.90689|0.02811|
+
+The errors are still positive, the same as section one.
+
+### Notes
  
 - **First: we can transfer the value to other bases by using the change of base formula $\log_2(a.b) = \frac{\log(a.b)}{\log(2)}$.**
-- **Second: Since I approximate $\log_2(k.b)$ as $\log_2(k.d)$ with $d = k \cdot b$, these are two different numbers, so the error between the true value and the approximation might increase.**
-- **Third: Notice that we still cannot approximate $\log_2(a.b)$ without a calculator. How about approximating $\log_2(a)$?**
-**Unresolved:** I need to measure the gap $k.d - k.b$ in terms of $k$ and $b$, and check what it equals when $k = 1$. Until I do that, I am not claiming this section works.
+- **Second: The key step is factoring $k$ out first. This turns the leftover decimal part into $\frac{0.b}{k}$ instead of $0.b$. Dividing by $k$ is what my earlier attempt was missing.**
+- **Third: Notice that we still cannot approximate $\log_2(a.b)$ without a calculator, because the formula needs $\log_2(k)$ as an input. How about approximating $\log_2(k)$?**
+
+> **Unresolved:** I have not yet measured how the error behaves when k grows larger and approaches infinity, so checking if the approximation works for every value might need another graph of $\log_2(k.5)$.
  
 ---
  
 ## 3. Next Steps
  
-I will try to approximate $\log_2(a)$ next time by analyzing data.
+I will try to approximate $\log_2(k)$ next time by analyzing data.
 
 
 
